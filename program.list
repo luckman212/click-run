@@ -1,0 +1,4 @@
+Dump kernel messages for last 10m	log show --last 10m --predicate 'process == "kernel"' --style syslog
+List TimeMachine backups	/usr/bin/tmutil listbackups
+Date of last reboot	date -j -f "%a %b %d %H:%M %Y" "$(last -n1 reboot | cut -c44-) $(date +%Y)" "+%Y-%m-%d-%H%M%S"
+run ls on /System	/bin/ls -ledO /System
