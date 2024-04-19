@@ -13,13 +13,13 @@ Quick little PoC to answer https://apple.stackexchange.com/questions/471930
 
 ## run
 
-Execute `click_run.sh [/path/to/config]`
+Execute `click_run.sh [--dry-run] [/path/to/config]`
 
 Since it uses [fzf](https://github.com/junegunn/fzf) you can type a command name to filter the list, select with the arrow keys, or use the mouse.
 
 Navigate to select your command (a preview of the command will be shown at the bottom of the screen as you highlight each row)
 
-Double click or press `[enter]` — your command will be executed!
+Double click or press `[enter]` — your command will be executed! (if invoked with the `--dry-run` flag, the command will only be previewed, without actually be executed).
 
-> ⚠️ this is potentially dangerous!
-> passing arbitrary strings to shell `eval` could be dangerous. Please test your commands! The program does not do any additional error-checking.
+> ⚠️ This is potentially dangerous!
+> Passing arbitrary strings to shell `eval` can result in unexpected (or worse) results. Please test your commands with `--dry-run` if you're not sure! The program does not do any additional error-checking.
