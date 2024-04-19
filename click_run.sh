@@ -9,20 +9,21 @@
 export PROGRAM_LIST=${1:-program.list}
 [[ -e $PROGRAM_LIST ]] || { echo "$PROGRAM_LIST not found"; exit 1; }
 
-read -r -u3 CHOICE 3< <(cut -d$'\t' -f1 "$PROGRAM_LIST" | fzf \
+IFS=$'\t' read -r -u3 CHOICE CMD _ 3< <(fzf <"$PROGRAM_LIST" \
 	--header="select program to run (use arrows or click with mouse)" \
 	--no-hscroll \
 	--no-multi \
 	--no-select-1 \
 	--no-sort \
+	--delimiter='\t' \
+	--with-nth=1 \
 	--preview-label='command preview' \
 	--preview-window='bottom,20%,wrap' \
-	--preview 'awk -v c={} "BEGIN {FS=\"\t\"} \$1==c {print \$2}" $PROGRAM_LIST')
+	--preview 'echo {2}')
 
 [[ -n $CHOICE ]] || exit
-#echo "==> running: $CHOICE"
-CMD=$(awk -v c="$CHOICE" 'BEGIN {FS="\t"} $1==c {print $2}' "$PROGRAM_LIST")
 [[ -n $CMD ]] || exit 1
+#echo "==> running: $CHOICE"
 
 #uncomment the line below to debug failing commands
 #set -x
