@@ -21,5 +21,6 @@ Navigate to select your command (a preview of the command will be shown at the b
 
 Double click or press `[enter]` — your command will be executed! (if invoked with the `--dry-run` flag, the command will only be previewed, without actually be executed).
 
-> ⚠️ This is potentially dangerous!
-> Passing arbitrary strings to shell `eval` can result in unexpected (or worse) results. Please test your commands with `--dry-run` if you're not sure! The program does not do any additional error-checking.
+## ⚠️ This is potentially dangerous!
+
+Passing arbitrary strings to shell `eval` can result in unexpected (or worse) results. Test your commands with `--dry-run` if you're not sure! The program does very minimal error-checking.
